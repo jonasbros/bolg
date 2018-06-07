@@ -69,8 +69,7 @@
                   style="background-color: #4267b2" 
                   dark 
                   depressed
-                  :href="'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent('https://jonasbros.github.io/bolg/#/post/'+ $options.filters.replaceSpaceWithDash(post.title) + '/' + post.id) +'&amp;src=sdkpreparse'"
-                  target="_blank">            
+                  @click="fbShare">            
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="_1pbq" color="#ffffff"><path fill="#ffffff" fill-rule="evenodd" d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1
                     3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733
                     1.667-1.667
@@ -160,9 +159,9 @@ export default {
       fbShare() {
         FB.ui({
               method: 'feed',
-              link: 'http://localhost:3000/post/'+ this.$options.filters.replaceSpaceWithDash(this.post.title) +'/'+this.post.id, 
+              link: 'https://jonasbros.github.io/bolg/#/post/' + this.$options.filters.replaceSpaceWithDash(post.title) + '/' + this.post.id, 
               app_id: '571629196513066',
-              caption: 'penis',
+              caption: this.post.excerpt,
               source: this.post.featured_img,
             }, function(response){
                 console.log(response);
