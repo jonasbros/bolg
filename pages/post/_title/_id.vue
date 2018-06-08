@@ -149,9 +149,9 @@ export default {
 
             }
         }
-        setTimeout( function() {
+        // setTimeout( function() {
             this.getPost();
-        }.bind(this), 150 );
+        // }.bind(this), 100 );
     },
     mounted() {
         this.$store.commit('setLoadingScreen', false);

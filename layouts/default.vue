@@ -26,11 +26,11 @@ export default {
       meta: [
         { hid: 'robots', name: 'robots', content: 'index, follow' },
         { hid: 'og:site_name', name: 'og:site_name', content: 'Bolg' },
-        { hid: 'description', name: 'description', content: '\'Blog hosting website. Where speech is truly free. Kappa' },
+        { hid: 'description', name: 'description', content: 'Blog hosting website. Where speech is truly free. Kappa' },
         { hid: 'keywords', name: 'keywords', content: 'bolg, blog, blog hosting, medium, medium alternative, jonas perez, jonasbros, jonas' },
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
         { hid: 'twitter:title', name: 'twitter:title', content: 'Bolg — Where speech is truly free.' },
-        { hid: 'twitter:description', name: 'twitter:description', content: '\'Blog hosting website. Where speech is truly free. Kappa' },
+        { hid: 'twitter:description', name: 'twitter:description', content: 'Blog hosting website. Where speech is truly free. Kappa' },
         { hid: 'twitter:image', name: 'twitter:image', content: '' },
         { hid: 'fb:app_id', name: 'fb:app_id', content: '571629196513066' },
         { hid: 'og:url', name: 'og:url', content: 'https://jonasbros.github.io/bolg/'},
