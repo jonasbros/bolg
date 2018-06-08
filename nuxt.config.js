@@ -1,6 +1,9 @@
 var webpack = require('webpack');
 
 module.exports = {
+  render: {
+    ssr: true,
+  },
   axios: {
     credentials: false
   },
