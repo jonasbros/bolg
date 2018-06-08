@@ -8,7 +8,7 @@ module.exports = {
     credentials: false
   },
   router: {
-    base: '/bolg/',
+    base: '/',
     // mode: 'hash'
   },
   /*
@@ -24,13 +24,13 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Open+Sans:700,800|Material+Icons' },
-      { rel: 'stylesheet', href: '/bolg/katex.min.css', type: 'text/css' },   
+      { rel: 'stylesheet', href: '/katex.min.css', type: 'text/css' },   
     ],
     script: [
       { src: 'https://connect.facebook.net/en_US/all.js' },
       { src: 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js' },
       { src: 'https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js' },
-      { src: '/bolg/katex.min.js' },
+      { src: '/katex.min.js' },
     ]
   },
   plugins: [

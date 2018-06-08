@@ -3,7 +3,7 @@
         <v-toolbar class="elevation-0" fixed color="white">
             <!-- brand / title -->
             <router-link to="/">
-                <v-toolbar-title><img src="/bolg/b2.png" alt="" width="60"></v-toolbar-title>
+                <v-toolbar-title><img src="/b2.png" alt="" width="60"></v-toolbar-title>
             </router-link>   
             <!-- search -->
             <searchbar></searchbar>
