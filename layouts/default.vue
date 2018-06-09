@@ -33,7 +33,7 @@ export default {
         { hid: 'twitter:description', name: 'twitter:description', content: 'Blog hosting website. Where speech is truly free. Kappa' },
         { hid: 'twitter:image', name: 'twitter:image', content: '/b1.png' },
         { hid: 'fb:app_id', name: 'fb:app_id', content: '571629196513066' },
-        { hid: 'og:url', name: 'og:url', content: 'https://jonasbros.github.io/bolg/'},
+        { hid: 'og:url', name: 'og:url', content: 'https://jonas.github.io/bolg/'},
         { hid: 'og:type', name: 'og:type', content: 'website' },
         { hid: 'og:title', name: 'og:title', content: 'Bolg — Where speech is truly free.' },
         { hid: 'og:image', name: 'og:image', content: '/b1.png' },

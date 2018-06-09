@@ -11,7 +11,7 @@
                         <!-- share button in author image for easy positioning -->
                         <div class="post-share">
                             <p>Share: </p>
-                            <a :href="'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent('https://bolgia.herokuapp.com/post/'+ titleDashed + '/' + post.id) +'&amp;src=sdkpreparse'"
+                            <a :href="'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent('https://jonasbros.github.io/post/'+ titleDashed + '/' + post.id) +'&amp;src=sdkpreparse'"
                                 target="_blank">            
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="_1pbq" color="#ffffff"><path fill="#ffffff" fill-rule="evenodd" d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1
                                 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733
@@ -97,7 +97,7 @@ export default {
                 { hid: 'twitter:title', name: 'twitter:title', content: this.post.title },
                 { hid: 'twitter:description', name: 'twitter:description', content: this.post.excerpt },
                 { hid: 'twitter:image', name: 'twitter:image', content: this.post.featured_image },
-                { hid: 'og:url', name: 'og:url', content: 'https://bolgia.herokuapp.com/post/' + this.titleDashed + '/' + this.post.id},
+                { hid: 'og:url', name: 'og:url', content: 'https://jonasbros.github.io/bolg/post/' + this.titleDashed + '/' + this.post.id},
                 { hid: 'og:type', name: 'og:type', content: 'article' },
                 { hid: 'og:title', name: 'og:title', content: this.post.title },
                 { hid: 'og:description', name: 'og:description', content: this.post.excerpt },
