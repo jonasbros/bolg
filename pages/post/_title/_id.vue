@@ -97,7 +97,7 @@ export default {
                 { hid: 'twitter:title', name: 'twitter:title', content: this.post.title },
                 { hid: 'twitter:description', name: 'twitter:description', content: this.post.excerpt },
                 { hid: 'twitter:image', name: 'twitter:image', content: this.post.featured_image },
-                { hid: 'og:url', name: 'og:url', content: 'https://jonasbros.github.io/bolg/post/' + this.titleDashed + '/' + this.post.id},
+                { hid: 'og:url', name: 'og:url', content: 'https://bolgia.herokuapp.com/post/' + this.titleDashed + '/' + this.post.id},
                 { hid: 'og:type', name: 'og:type', content: 'article' },
                 { hid: 'og:title', name: 'og:title', content: this.post.title },
                 { hid: 'og:description', name: 'og:description', content: this.post.excerpt },
@@ -109,7 +109,7 @@ export default {
         return {
             config: this.$store.state.config,
             postID: this.$route.params.id,
-            post: {},
+            post: {title: 'Bolg'},
             titleDashed: '',
             comments: [],
             addComment: false,
