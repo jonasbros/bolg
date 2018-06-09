@@ -1,9 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-  render: {
-    ssr: true,
-  },
+  buildDir: 'test',
   axios: {
     credentials: false
   },
@@ -50,6 +48,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    publicPath: 'test',
     vendor: ['axios', 'vuetify'],
     plugins: [
       new webpack.ProvidePlugin({
