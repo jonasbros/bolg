@@ -149,6 +149,8 @@ export default {
 
             }
         }
+    },
+    beforeCreate() {
         // setTimeout( function() {
             this.getPost();
         // }.bind(this), 100 );
