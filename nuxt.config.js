@@ -6,7 +6,7 @@ module.exports = {
   },
   router: {
     base: '/bolg/',
-    // mode: 'hash'
+    mode: 'hash'
   },
   /*
   ** Headers of the page
