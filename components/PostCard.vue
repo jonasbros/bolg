@@ -159,7 +159,7 @@ export default {
       fbShare() {
         FB.ui({
               method: 'feed',
-              link: 'https://bolgia.herokuapp.com/post/' + this.$options.filters.replaceSpaceWithDash(this.post.title) + '/' + this.post.id,
+              link: 'https://jonasbros.github.io/bolg/#/post/' + this.$options.filters.replaceSpaceWithDash(this.post.title) + '/' + this.post.id,
               app_id: '571629196513066',
               caption: this.post.excerpt,
               source: this.post.featured_img,
