@@ -5,7 +5,7 @@ module.exports = {
     credentials: false
   },
   router: {
-    base: '/',
+    base: '/bolg/',
     // mode: 'hash'
   },
   /*
