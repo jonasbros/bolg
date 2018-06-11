@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Redirect 301 /post/(.*)/(.*)$ https://www.00jonasperez.000webhostapp.com/post.php?id=$2

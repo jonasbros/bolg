@@ -1,6 +1,0 @@
-AddDefaultCharset UTF-8
-RewriteEngine On
-RewriteBase   /
-
-RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet)
-RewriteRule ^post/(.*)/(.*)$ https://www.00jonasperez.000webhostapp.com/post.php?id=$2 [NC,L]
