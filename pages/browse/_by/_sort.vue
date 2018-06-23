@@ -229,6 +229,13 @@ export default {
     .browse-navigation
         margin: 100px 0 25px
         padding: 0 250px
+        .nuxt-link-active button
+            background-color: rgba(0,0,0,.08) !important
+
+    @media only screen and (max-width: 972px)
+        .browse-navigation
+            padding: 0        
+
     .inf-loader
         position: absolute
         margin-top: 100px

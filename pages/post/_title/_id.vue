@@ -6,7 +6,7 @@
             <h1 class="post-title">{{post.title}}</h1>
             <!-- post meta -->
             <div class="post-meta">
-                <div class="d-inline-block">
+                <div class="d-inline-block author-meta">
                     <div class="post-author-pic" :style="'background-image: url(' + post.author_dp + ')'">
                         <!-- share button in author image for easy positioning -->
                         <div class="post-share">
@@ -58,6 +58,7 @@
                 no-resize
                 auto-grow
                 rows="3"
+                color="teal"
                 :counter="150"
                 maxlength="150"
                 class="add-comment-input"
@@ -134,20 +135,6 @@ export default {
         //screen width
         if( process.browser ) {
             this.screenWidth = window.screen.width;
-
-            window.onscroll = function() {
-                const postShare = document.querySelector('.post-share');
-                if( postShare.parentNode.offsetTop <= window.scrollY ) {
-                    postShare.style.position = 'fixed';
-                    postShare.style.top = '20%';
-                    postShare.style.left = '13.55%';
-                }else {
-                    postShare.style.position = 'absolute';
-                    postShare.style.top = '150%';
-                    postShare.style.left = '-235%';
-                }
-
-            }
         }
 
         // setTimeout( function() {
@@ -272,7 +259,7 @@ export default {
 <style lang="sass" scoped>
 .container
     position: relative
-    width: 960px
+    // width: 960px
     // margin: 0 auto
 .post-container
     position: relative
@@ -288,8 +275,22 @@ export default {
     margin-bottom: 10px
 .post-title
     margin-bottom: 50px
+    font-size: 5rem
 .post-meta
     margin-bottom: 20px
+    clear: both
+@media only screen and (max-width: 768px)
+    .post-title
+        font-size: 4rem
+@media only screen and (max-width: 600px)
+    .post-image
+        height: 250px
+    .post-title
+        font-size: 2.5rem
+        margin-bottom: 25px
+    .post-meta
+        margin-bottom: 10px
+
 .post-author-pic, .post-author-name
     display: inline-block  
     vertical-align: middle
@@ -305,13 +306,23 @@ export default {
     margin-right: 10px
 .post-author-name
     font-size: 1.2rem
-
 .likes-views
     float: right
     font-size: 1.4rem
-
 .post-body
+    clear: both
     font-size: 1.5rem
+@media only screen and (max-width: 600px)
+    .post-author-pic
+        height: 42px
+        width: 42px
+    .post-author-name, .post-body, .likes-views
+        font-size: 1.2rem
+        
+@media only screen and (max-width: 450px)
+    .author-meta, .likes-views
+        float: left
+        clear: both
 
 .comments-container
     h2
@@ -327,7 +338,6 @@ export default {
     top: 0px !important
 
 .add-comment-input
-    border: 1px solid black
     border-radius: 3px
     padding: 0
     
@@ -336,12 +346,12 @@ export default {
 
 
 .post-share 
-    position: absolute
-    height: 100px
-    top: 150%
-    left: -235%
-    width: 100px
-    // background-color: pink
+    position: fixed
+    bottom: 0
+    left: 0
+    height: 75px
+    width: 75px
+    background-color: white
     text-align: center
     font:
         size: 16px
@@ -358,21 +368,7 @@ export default {
             transform: translate(-30%, -30%)
             height: 32px
             width: 32px
-
-
-// 0 and above
-@media only screen and (min-width: 0px)
-    .post-title
-        font-size: 3em
-
-// 500px and above
-@media only screen and (min-width: 500px)
-    .post-title
-        font-size: 4em
-
-// 600px and above
-@media only screen and (min-width: 600px)
-    .post-title
-        font-size: 5em
-
+@media only screen and (min-width: 1024px)
+    .post-share
+        left: 0.4%
 </style>

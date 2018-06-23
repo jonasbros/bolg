@@ -1,5 +1,5 @@
 <template>
-    <v-flex class="popular" xs5>
+    <v-flex class="popular hidden-sm-and-down" xs5>
         <v-layout column nowrap>
             <v-flex class="pp-head">
                 <h2>Popular on bolg</h2>

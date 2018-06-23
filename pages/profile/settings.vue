@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout class="form-container" row wrap>            
-            <v-flex xs8 offset-xs2>            
+            <v-flex xs12 md8 offset-md2>            
                 <div class="form-container-inner elevation-1 text-xs-left">
                     <v-form v-model="settingsValid" ref="settingsForm">
                         <v-layout row wrap>
@@ -245,7 +245,6 @@ export default {
                     this.profile.about = this.about;
                     this.profile.whatdo = this.whatdo;
                     this.profile.url = this.url;
-                    this.profile.display_picture = this.picture;
 
                     this.$store.commit( 'updateUserData', this.profile );
                     this.$store.commit( 'updateUserCookie', this.profile );
@@ -341,10 +340,18 @@ export default {
 .container
     margin-top: 56px
 .form-container    
-    padding: 25px 45px
+    padding: 0px 45px
+
 .form-container-inner
     background-color: #fff
     padding: 40px 35px 15px
+
+@media only screen and (max-width: 600px)
+    .form-container  
+        padding: 0 
+
+    .form-container-inner
+        padding: 40px 18px 15px
 
 .dp-setting
     position: relative

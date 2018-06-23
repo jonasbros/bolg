@@ -550,6 +550,12 @@ export default {
 .container
     margin-top: 56px !important
     max-width: 724px !important
+    padding-top: 56px !important
+
+@media only screen and (max-width: 600px)
+    .container
+        padding-top: 20px !important
+
 .profile-owner
     position: relative
     padding: 20px 25px
@@ -578,6 +584,15 @@ export default {
 .profile-meta
     margin-left: 35px   
     max-width: 75%
+@media only screen and (max-width: 600px)
+    .profile-meta
+        margin-left: 0px
+        max-width: 100%
+    
+    .profile-picture    
+        margin: 0 0 28px
+    
+
 .profile-about, .profile-whatdo
     font-size: 1rem
 .profile-follows span

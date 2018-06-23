@@ -1,5 +1,5 @@
 <template>
-    <v-flex class="following" xs7>
+    <v-flex class="following" xs12 md7>
         <v-layout column nowrap>
             <v-flex class="fl-head">
                 <h2>Following</h2>
@@ -12,8 +12,8 @@
                 <!-- picture -->
                 <div v-if="post.featured_img != ''" class="fl-post__picture" :style="'background-image: url('+ post.featured_img +')'"></div>
                 <!-- footer -->
-                <div class="fl-post__footer">
-                    <span>&mdash; {{ post.authorName }}</span>
+                <div class="fl-post__footer truncate">
+                    <span class="truncate">&mdash; {{ post.authorName }}</span>
                     <span>&bull;</span>
                     <span>{{ post.created | dateDiffFilter }}</span>
                 </div>
@@ -61,6 +61,21 @@ export default {
         this.getFollowing();
     },
     methods: {
+        shaver() {
+            //truncate title and excerpt for posts
+            setTimeout( () => {
+                //window width 769px below
+                if( process.browser && window.screen.width > 769 ) {
+                    shave('.fl-post__title', 40);
+                    shave('.fl-post__excerpt', 55);
+                }
+                //window width 769px below
+                if( process.browser && window.screen.width < 769 ) {
+                    shave('.fl-post__title', 40);
+                    shave('.fl-post__excerpt', 45);
+                }
+            }, 150 );
+        },
         getFollowing() {
             const body = {
                 user_id: this.userID,
@@ -76,13 +91,8 @@ export default {
                 this.totalPages = Math.ceil( this.totalItems / this.perpage );
 
                 //truncate title and excerpt for posts
-                setTimeout( () => {
-                    if( process.browser ) {
-                        //large post
-                        shave('.fl-post__title', 40);
-                        shave('.fl-post__excerpt', 55);
-                    }
-                }, 150 );
+                this.shaver();
+
             })
             .catch((response) => {
                 console.log(response);
@@ -97,19 +107,24 @@ export default {
     .following
         min-height: 300px    
     .fl-head
-        margin: 15px 25px 40px
+        padding: 15px 25px 40px
+        border-bottom: 1px solid grey
         h2
             font:
                 size: 2.4rem
                 weight: bold
                 family: 'Open Sans', 'Helvetica', 'Arial', sans-serif
+    @media only screen and (max-width: 603px)
+        .fl-head
+            padding: 15px 25px 10px
+
     .fl-post
         position: relative
         padding: 15px 25px
         background-color: #fff
-        // border-bottom: 1px solid grey
-        border-top: 1px solid grey
-        margin: 8px 0
+        // border-top: 1px solid grey
+        border-bottom: 1px solid grey
+        // margin: 8px 0
     .fl-post__title
         font:
             size: 1.4rem
@@ -130,9 +145,24 @@ export default {
         background:
             size: cover
             position: center
+    @media only screen and (max-width: 603px)
+        .fl-post__title
+            font-size: 1.2rem
+            margin-bottom: 8px
+        .fl-post__excerpt
+            margin-bottom: 10px
+        .fl-post__picture
+            margin-bottom: 30px
+            height: 80%
+            width: 35%
+
     .fl-post__footer
+        max-width: 62%
         span
-            margin-right: 10px
+            display: inline-block
+            margin-right: 5px
+            max-width: 48%
+            vertical-align: middle
     
     .post-has-picture
         .fl-post__title, .fl-post__excerpt

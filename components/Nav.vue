@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-toolbar class="elevation-0" fixed color="white">
+        <v-toolbar class="elevation-0 navbar-main" fixed color="white">
             <!-- brand / title -->
             <router-link to="/">
-                <v-toolbar-title><img src="/bolg/b2.png" alt="" width="60"></v-toolbar-title>
+                <v-toolbar-title><img src="/b2.png" alt="" width="60"></v-toolbar-title>
             </router-link>   
             <!-- search -->
             <searchbar></searchbar>
@@ -12,22 +12,35 @@
             <div class="hidden-sm-and-down">
                 <router-link :to="{ path: '/browse/all/newest' }" >
                     <v-btn large flat>
-                        browse
+                        Browse
                     </v-btn>
                 </router-link>            
                 <v-btn v-if="!isLoggedIn" @click.stop="logindialog = !logindialog" flat>login</v-btn>
                 <v-btn v-if="!isLoggedIn" @click.stop="signupdialog = !signupdialog" flat>sign up</v-btn>         
                 <!-- user profile dropdown -->
-                <v-menu offset-y left v-if="isLoggedIn">
+                <v-menu offset-y left v-if="isLoggedIn" min-width="120">
                     <v-btn slot="activator" icon light large>
                         <div class="user-menu__picture" :style="'background-image: url('+ userData.display_picture +')'"></div>
                     </v-btn>
                     <v-list>
                         <v-list-tile>
-                            <v-list-tile-title>pee</v-list-tile-title>                            
+                            <v-list-tile-title>
+                                <router-link :to="'/profile/' + userData.url">
+                                    Profile
+                                </router-link>  
+                            </v-list-tile-title>                       
                         </v-list-tile>
                         <v-list-tile>
-                            <v-list-tile-title @click.stop="logout()">logout</v-list-tile-title>                            
+                            <v-list-tile-title>
+                                <router-link :to="'/new-post'">
+                                    New post
+                                </router-link>  
+                            </v-list-tile-title>                            
+                        </v-list-tile>
+                        <v-list-tile>
+                            <v-list-tile-title @click.stop="logout()">
+                                Logout
+                            </v-list-tile-title>                            
                         </v-list-tile>
                         
                     </v-list>
@@ -39,27 +52,38 @@
         <!-- profile drawer -->
         <v-navigation-drawer
         temporary
-        v-model="profile"
-        style="background-color: white;"
-        fixed
-        right
-        >
-            <profilecontents :userdata="userData"/>
-        </v-navigation-drawer>
-
-        <!-- profile drawer -->
-        <v-navigation-drawer
-        temporary
         v-model="smmenu"
         style="background-color: white;"
         right
         :fixed="true"
-        >
+        class="text-xs-left hamburger-right"
+        >    
+            <v-list class="px-0 pt-2 pb-0">
+            <v-list-tile avatar>
+                <v-list-tile-avatar>
+                    <router-link :to="'/profile/' + userData.url" tag="a" :style="'background-image: url('+ userData.display_picture +')'"></router-link>                    
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                    <router-link :to="'/profile/' + userData.url">
+                        <v-list-tile-title>{{ userData.name }}</v-list-tile-title>
+                    </router-link>
+                </v-list-tile-content>
+            </v-list-tile>
+            </v-list>
+      
             <v-list class="pt-0">
                 <v-list-tile>
                     <v-list-tile-content>
-                        <router-link to="/browse/all/newest">Browse</router-link>
+                        <router-link to="/browse/all/newest">Browse posts</router-link>
                     </v-list-tile-content>
+                </v-list-tile>
+
+                <v-list-tile>
+                    <v-list-tile-title>
+                        <router-link :to="'/new-post'">
+                            New post
+                        </router-link>  
+                    </v-list-tile-title>                            
                 </v-list-tile>
 
                 <v-list-tile @click.stop="logout()" v-if="isLoggedIn">
@@ -149,8 +173,16 @@ export default {
 a
     color: black
 
-.toolbar__content
+.navbar-main .toolbar__content
     padding: 10px 55px 0
+
+@media only screen and (max-width: 1024px)
+    .navbar-main .toolbar__content
+        padding: 10px 15px 0
+
+@media only screen and (max-width: 450px)
+    .navbar-main .toolbar__content
+        padding: 0
 
 .btn__content
     font-size: 16px
@@ -186,7 +218,7 @@ a
         transform: translateY(15%)
 
 
-.user-menu__picture
+.user-menu__picture, .avatar a
     height: 44px
     width: 44px
     border-radius: 69%

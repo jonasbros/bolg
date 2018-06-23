@@ -63,6 +63,7 @@
 import axios from 'axios';
 import {mapGetters} from 'vuex';
 import shave from 'shave';
+import debounce from 'debounce';
 
 export default {
     data() {
@@ -85,10 +86,43 @@ export default {
     },
     created() {
         this.getFeatured();        
+
+        if( process.browser ) {
+            window.onresize = debounce(() => {
+                this.shaver();
+            }, 50);
+        }
     },
     methods: {
+        shaver() {
+            //truncate title and excerpt for posts
+            setTimeout( () => {
+                //window width 769px below
+                if( process.browser && window.screen.width > 769 ) {
+                    //large post
+                    shave('.bf-item.i1 .bf-item__title', 120);
+                    shave('.bf-item.i1 .bf-item__excerpt', 65);
+                    //medium post
+                    shave('.bf-item.i2 .bf-item__title', 70);
+                    shave('.bf-item.i2 .bf-item__excerpt', 50);
+                    //small posts
+                    shave('.bf-item.i3 .bf-item__title, .bf-item.i4 .bf-item__title', 80);
+                    shave('.bf-item.i3 .bf-item__excerpt, .bf-item.i4 .bf-item__excerpt', 50);
+                }
+                //window width 769px below
+                if( process.browser && window.screen.width < 769 ) {
+                    //small posts
+                    shave('.bf-item__title', 80);
+                    shave('.bf-item__excerpt', 45);
+                }
+                //window width 450px below
+                if( process.browser && window.screen.width < 451 ) {
+                    //extra small posts
+                    shave('.bf-item__title, .bf-item__excerpt', 45);
+                }
+            }, 150 );
+        },
         getFeatured() {
-            console.log(this.config.api + 'getfeatured.php');
             axios.post( this.config.api + 'getfeatured.php', {}, this.config.axiosHeader )
             .then((response) => {
                 console.log(response);
@@ -98,20 +132,7 @@ export default {
                     this.posts.forEach((p) => {
                         p.postUrl = this.$options.filters.replaceSpaceWithDash(p.title);
                     });
-                    //truncate title and excerpt for posts
-                    setTimeout( () => {
-                        if( process.browser ) {
-                            //large post
-                            shave('.bf-item.i1 .bf-item__title', 120);
-                            shave('.bf-item.i1 .bf-item__excerpt', 75);
-                            //medium post
-                            shave('.bf-item.i2 .bf-item__title', 100);
-                            shave('.bf-item.i2 .bf-item__excerpt', 55);
-                            //small posts
-                            shave('.bf-item.i3 .bf-item__title, .bf-item.i4 .bf-item__title', 80);
-                            shave('.bf-item.i3 .bf-item__excerpt, .bf-item.i4 .bf-item__excerpt', 55);
-                        }
-                    }, 150 );
+                    this.shaver();
                 }
                 
             })
@@ -145,7 +166,7 @@ export default {
     background-color: black
 
 .i3, .i4
-    flex: 1 1 260px
+    flex: 1 1 288px
 
 .bf-item__picture
     position: absolute
@@ -199,4 +220,72 @@ export default {
 
 .i3 .bf-item__text, .i4 .bf-item__text
     top: 30%
+
+@media only screen and (max-width: 1271px)
+    .i1 .bf-item__text
+        top: 30%
+    .i2 .bf-item__text, .i3 .bf-item__text    
+        top: 12%
+    
+    .i4 .bf-item__text
+        top: 20%
+
+@media only screen and (max-width: 1025px)
+    .i1 .bf-item__text
+        top: 45%
+
+@media only screen and (max-width: 769px)
+    .bf-item__text
+        font-size: 1.4rem
+    .bf-item__title
+        font-size: 2rem 
+    .i1 .bf-item__text
+        font-size: 1.8rem
+        top: 48%    
+    .i2 .bf-item__text
+        top: 12%
+    .i2 .bf-item__title
+        width: 80%        
+    .i3 .bf-item__text, .i4 .bf-item__text
+        top: 10%
+
+// @media only screen and (max-width: 603px)
+//     .bolg-featured
+//         height: 80vh
+//     .c1
+//         height: 20vh
+    
+//     .c2
+//         height: 60vh
+    
+//     .i2, .i3, .i4
+//         height: 20vh
+
+//     .bf-item__text
+//         top: 18%
+//         font-size: 1.2rem
+//     .bf-item__title
+//         font-size: 3rem 
+
+@media only screen and (max-width: 603px)
+    .bolg-featured
+        height: 100vh
+        margin-top: 45px
+    .c1
+        height: 25vh    
+    .c2
+        height: 75vh
+    .i2, .i3, .i4
+        height: 25vh           
+
+    .bf-item__text
+        font-size: 1rem !important
+        
+    .bf-item__title
+        font-size: 1.2rem !important
+    
+    .i1, .i2, .i3, .i4
+        .bf-item__text
+            top: 8%
+
 </style>

@@ -2,18 +2,19 @@
     <v-container class="search">
         <v-layout row wrap>
             <!-- saerch nput -->
-            <v-flex xs8 offset-xs2 style="background-color: #fff;" class="pa-3">
+            <v-flex xs12 md8 offset-md2 style="background-color: #fff;" class="pa-3">
                 <v-text-field
                 prepend-icon="search"
                 :label="( term != '' ? 'Search results for: ' : 'Search bolg...' )"
                 v-model="term"
                 class="term"
+                color="teal"
                 flat
                 @keyup.enter="search()"
                 ></v-text-field>
             </v-flex>
             <!-- tabs -->
-            <v-flex xs8 offset-xs2 class="pb-3">
+            <v-flex xs12 md8 offset-md2 class="pb-3">
                 <v-tabs
                     slot="extension"
                     v-model="tabs"
@@ -212,17 +213,22 @@ export default {
 </script>
 
 <style lang="sass">
+.search
+    margin-top: 66px
+    padding: 50px
+
+@media only screen and (max-width: 600px)
     .search
-        margin-top: 66px
-        padding: 50px
+        padding: 15px
 
-    // .term input
-    //     border-bottom: 1px solid black !important
+// .term input
+//     border-bottom: 1px solid black !important
 
-    .post
-        margin: 10px 0 5px
+.post
+    margin: 10px 0 5px
+    border: none !important
 
-    .tabs__content
-        padding-top: 10px
+.tabs__content
+    padding-top: 10px
         
 </style>

@@ -13,6 +13,7 @@
           :counter="150"
           maxlength="150"
           class="new-post-title"
+          color="teal"
         ></v-text-field>
       </v-flex>      
       <!-- editor -->
@@ -24,22 +25,23 @@
         </quill-editor>
       </v-flex>        
       <!-- custom excpert -->
-      <v-flex xs12 class="mt-3">
-        <!-- post title -->
+      <v-flex xs12>
+        <!-- post excerpt -->
         <v-text-field
           v-model="excerpt"
           label="Custom excerpt"
           textarea
           no-resize
           auto-grow
-          rows="1"
+          rows="2"
           :counter="150"
           maxlength="150"
-          class="new-post-title mb-0"
+          class="new-post-excerpt mb-0"
+          color="teal"
         ></v-text-field>
       </v-flex>       
       <!-- bottom shizz -->
-      <v-flex class="new-post-category text-xs-left" xs2>
+      <v-flex class="new-post-category text-xs-left" xs12 md2>
           <label for="category-select">Category: </label>
           <select id="category-select" v-model="category">
             <option value="Uncategorized:0">Uncategorized</option>
@@ -47,7 +49,7 @@
           </select>        
       </v-flex>
 
-      <v-flex xs5 class="featured-img">
+      <v-flex xs12 sm8 md5 class="featured-img">
         <label for="featured-img">Upload Featured Image(Optional): </label>     
         <input type="file" accept="image/*" id="featured-img" @change=" uploadImageError.error = false; uploadImageSuccess.success = false;">  
         <!-- remove image btn -->
@@ -66,7 +68,7 @@
         <p class="teal--text" v-show="uploadImageSuccess.success == true">{{uploadImageSuccess.msg}}</p>
       </v-flex>
 
-      <v-flex xs4 class="publish-btn text-xs-right">
+      <v-flex xs12 md4 class="publish-btn text-xs-left text-lg-right">
         <v-btn flat outline @click="publish">Publish</v-btn>
         <p class="red--text" v-show="publishError.error">{{publishError.msg}}</p>
       </v-flex>
@@ -175,6 +177,19 @@ export default {
   },
   mounted() {
     this.screenWidth = window.screen.width;
+
+    //quill editor on click, border color changes
+    let quill = document.querySelector('.quill-editor');
+    document.querySelector('.application--wrap').addEventListener('click', function(e) {
+      if( !e.target.classList.contains('ql-editor') ) {
+        quill.classList.remove('is-writing');
+      }       
+    });    
+    quill.addEventListener('click', function() {
+      this.classList.add('is-writing');
+    });
+    //~~quill editor on click end
+
   },
   methods: {
     //get post if is edit
@@ -368,31 +383,58 @@ export default {
 }
 </script>
 
-<style lang="sass" >
+<style lang="sass">
 .container
-  padding-top: 71px
+  padding-top: 90px
 .quill-editor
-  // border: 1px solid lightgrey
   height: 420px
   iframe
     pointer-events: none
+  &.is-writing
+    .ql-container.ql-snow, .ql-toolbar.ql-snow 
+      border-color: #009688 !important
+      transition: border-color 0.3s ease
 
-.new-post-title 
+.new-post-title, .new-post-excerpt 
   padding: 0
-  margin-bottom: 30px
-  border: 1px solid lightgrey 
-  label
-    top: 10px !important
-    left: 10px !important
-.ql-container
-  height: 360px
-.input-group__input
-  // padding: 0 !important
-.input-group__details
-  transform: translateY(100%)
+  margin-bottom: 15px
 
-.new-post-category, .featured-img
-  margin-top: 15px
+@media only screen and (max-width: 600px)
+  .new-post-excerpt 
+    margin-top: 100px
+
+.ql-container
+  height: 360px 
+
+.ql-container.ql-snow, .ql-toolbar.ql-snow 
+    border: 2px solid grey
+
+.ql-toolbar button.ql-active svg .ql-fill, , 
+.ql-toolbar button.ql-active svg .ql-stroke,
+.ql-toolbar button.ql-active,
+  transition: fill 0.3s 
+  color: #009688 !important
+  
+.ql-toolbar button.ql-active svg .ql-fill
+  fill: #009688 !important
+.ql-toolbar button.ql-active svg .ql-stroke
+  stroke: #009688 !important
+
+.ql-toolbar button:hover > svg .ql-fill,
+.ql-picker-label.ql-active .ql-fill
+  fill: #009688 !important
+
+.ql-toolbar button:hover > svg .ql-stroke,
+.ql-toolbar .ql-picker:hover > .ql-picker-label .ql-stroke,
+.ql-picker-label.ql-active .ql-stroke
+  stroke: #009688 !important
+  
+.ql-toolbar .ql-picker:hover > .ql-picker-label,
+.ql-picker-item:hover,
+.ql-picker-label.ql-active
+  color: #009688 !important
+
+
 .new-post-category
   margin-right: 20px
   select
@@ -401,14 +443,21 @@ export default {
     width: 100%
     border: 1px solid lightgrey
 label
-  display: block
-  margin-bottom: 5px
+  top: 13px !important
 
 .featured-img
   position: relative
+@media only screen and (max-width: 1264px) 
+  .featured-img
+    margin-top: 18px
+
 .featured-img-upload-btn
   height: 35px
-  transform: translateY(-1px)
+  transform: translateY(-1px)  
+@media only screen and (max-width: 600px)
+  .featured-img-upload-btn
+    margin: 10px 0 !important
+
 #featured-img
   padding: 5px 30px 5px 5px
   border: 1px solid lightgrey
@@ -421,9 +470,13 @@ label
     weight: bold
   
 .publish-btn
-  margin-top: 30px
+  margin-top: 21px
   margin-left: 60px
-
+@media only screen and (max-width: 1264px) 
+  .publish-btn
+    margin: 18px 0
+    button
+      margin: 0
     
 @media only screen and (min-width: 1264px)
   .container

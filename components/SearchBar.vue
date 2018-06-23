@@ -2,7 +2,7 @@
     <div class="search-bar">
         <v-text-field
         prepend-icon="search"
-        placeholder="Search blog..."
+        placeholder="Search bolg..."
         v-model="term"
         class="term"
         flat
@@ -183,83 +183,100 @@ export default {
 </script>
 
 <style lang="sass">
+.search-bar
+    position: relative
+    margin-left: 50px
+    transform: translate(5%, 5%)
+    width: 25%
+    z-index: 999
+
+@media only screen and (max-width: 768px)       
     .search-bar
-        position: relative
-        margin-left: 50px
-        transform: translate(5%, 5%)
-        width: 25%
-        z-index: 999
-    
+        width: 50%
+
+@media only screen and (max-width: 450px)       
+    .search-bar
+        margin-left: 10px
+        width: 50%
+
+.intellisense
+    position: absolute
+    top: 56px
+    background-color: #fff
+    min-height: 80px
+    max-height: 80vh
+    height: auto
+    width: 100%
+    overflow-y: auto
+    overflow-x: hidden
+
+@media only screen and (max-width: 450px)      
     .intellisense
-        position: absolute
-        top: 56px
-        background-color: #fff
-        min-height: 80px
-        max-height: 70vh
-        height: auto
+        position: fixed
+        width: 100vw
+        transform: translateX(-28%)
+
+.results
+    padding: 20px 20px
+    font-size: 1.1rem
+    .sbar-head
+        border-bottom: 1px solid black
+        margin: 0
+    span
+        display: inline-block
+        padding: 10px 0
+    .posts
+        margin-bottom: 10px            
+    .post, .person
+        padding: 10px 0
+        margin: 0
+        cursor: pointer
         width: 100%
-        overflow-y: auto
-        overflow-x: hidden
-    .results
-        padding: 20px 20px
-        font-size: 1.1rem
-        .sbar-head
-            border-bottom: 1px solid black
+        // background-color: pink
+        p
             margin: 0
-        span
-            display: inline-block
-            padding: 10px 0
-        .posts
-            margin-bottom: 10px            
-        .post, .person
-            padding: 10px 0
-            margin: 0
-            cursor: pointer
-            // background-color: pink
-            p
-                margin: 0
-            .sbar-title
-                margin-bottom: 15px
-                font: 
-                    weight: normal
-                span
-                    padding: 0
-            .sbar-result-foot
-                display: flex
-                flex-direction: row
-                flex-wrap: wrap
-                justify-content: space-between
-            .sbar-author, .sbar-created
-                font-size: 1rem
-        .person
+        .sbar-title
+            margin-bottom: 15px
+            font: 
+                weight: normal
+            span
+                padding: 0
+        .sbar-result-foot
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
+            justify-content: space-between
+        .sbar-author, .sbar-created
+            font-size: 1rem
+    .person
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 15px 5px
+        .sbar-person__person
             display: flex
             justify-content: space-between
+            flex-wrap: wrap
+            flex-direction: row
             align-items: center
-            padding: 15px 5px
-            .sbar-person__person
-                display: flex
-                justify-content: space-between
-                flex-wrap: wrap
-                flex-direction: row
-                align-items: center
-            .sbar-dp
-                height: 48px
-                width: 48px
-                margin-right: 10px
-                border-radius: 69%
-                background:
-                    size: cover
-                    position: center
+        .sbar-dp
+            height: 48px
+            width: 48px
+            margin-right: 10px
+            border-radius: 69%
+            background:
+                size: cover
+                position: center
 
-        .post, .person
-            &:hover
-                background-color: #f2f2f2
-        .post:not(:last-of-type), .person:not(:last-of-type)
-            border-bottom: 1px solid grey
-    
-    .sbar-loader
-        text-align: center
-        margin-top: 20px
+    .post, .person
+        &:hover
+            background-color: #f2f2f2
+    .post:not(:last-of-type), .person:not(:last-of-type)
+        border-bottom: 1px solid grey
+
+.sbar-loader
+    text-align: center
+    margin-top: 20px
     
     
 </style>
