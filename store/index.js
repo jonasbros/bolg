@@ -13,7 +13,7 @@ const store = function() {
         state: {
             // configuration settings
             config: {
-                api: 'http://localhost:82/Bolg-api/',
+                api: 'https://00jonasperez.000webhostapp.com/',
                 cookieName: 'f2d3e8d854b5f4f9b0a36faad181f138',
                 sessionName: 'ee11cbb19052e40b07aac0ca060c23ee',
                 axiosHeader: { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } },
