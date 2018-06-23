@@ -384,7 +384,7 @@ export default {
 </script>
 
 <style lang="sass">
-.container
+.new-post-container
   padding-top: 90px
 .quill-editor
   height: 420px
