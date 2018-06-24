@@ -167,6 +167,11 @@ export default {
     } 
   },
   created() {
+    if( !this.isLoggedIn || !this.userData || Object.keys(this.userData).length < 1) {
+      this.$router.push('/');
+      return;
+    }
+    
     this.getCategories();
 
     if( this.edit ) {
@@ -176,6 +181,7 @@ export default {
     }
   },
   mounted() {
+    
     this.screenWidth = window.screen.width;
 
     //quill editor on click, border color changes
